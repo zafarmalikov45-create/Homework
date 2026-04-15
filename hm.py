@@ -1,91 +1,136 @@
-# #HOMEWORK
-# class Kitob:
-#     def __init__(self, nomi, muallif, narxi, nashriyot):
-#         self.nomi = nomi
-#         self.muallif = muallif
-#         self.narxi = narxi
-#         self.nashriyot = nashriyot
+#2 vazifa 
+class Employee:
+    def __init__(self, name: str, employee_id: str, hourly_rate: float = 15.0) -> None:
+        self.name = name
+        self.employee_id = employee_id
+        self.hourly_rate = hourly_rate
+        self.__working_hours = []
 
-#     def chiqar(self):
-#         print(f"Nomi: {self.nomi}, Muallif: {self.muallif}, Narxi: {self.narxi}, Nashriyot: {self.nashriyot}")
+    def log_hours(self, hour: int) -> bool:
+        if 0 <= hour <= 24:
+            self.__working_hours.append(hour)
+            return True
+        return False
 
+    def total_hours(self) -> int:
+        return sum(self.__working_hours)
 
-# kitoblar = [
-#     Kitob("Python", "Ali", 100, "Asaxiy"),
-#     Kitob("Java", "Vali", 120, "Humo"),
-#     Kitob("C++", "Sami", 90, "RBK"),
-#     Kitob("JS", "Olim", 110, "KALIT"),
-#     Kitob("Go", "Karim", 95, "Horizon")
-# ]
+    def calculate_salary(self) -> float:
+        return self.total_hours() * self.hourly_rate
 
-
-# for k in kitoblar:
-#     if 'A' <= k.nashriyot[0].upper() <= 'H':
-#         k.chiqar()
-
-# #2
-# class Kompyuter:
-#     def __init__(self, nomi, ram, narxi, protsessor):
-#         self.nomi = nomi
-#         self.ram = ram
-#         self.narxi = narxi
-#         self.protsessor = protsessor
-
-#     def chiqar(self):
-#         print(f"Nomi: {self.nomi}, RAM: {self.ram}GB, Narxi: {self.narxi}, CPU: {self.protsessor}")
+    def reset_hours(self) -> None:
+        self.__working_hours.clear()
 
 
+if __name__ == "__main__":
+    employee = Employee("Javlon", "E101", hourly_rate=20.0)
 
-# komp = [
-#     Kompyuter("HP", 8, 500, "i5"),
-#     Kompyuter("Dell", 16, 700, "i7"),
-#     Kompyuter("Lenovo", 4, 400, "i3"),
-#     Kompyuter("Asus", 12, 600, "Ryzen 5")
-# ]
+    print(employee.log_hours(8))    
+    print(employee.log_hours(9))    
+    print(employee.log_hours(10))   
+    print(employee.log_hours(25))   
+    print(employee.total_hours())       
+    print(employee.calculate_salary())  
 
-# for c in komp:
-#     if 4 < c.ram < 16:
-#         c.chiqar()
-
-
-class User:
-    def __init__(self, username, full_name, email):
-        self.username = username
-        self.full_name = full_name
-        self.email = email
-
-    
-    def get_info(self):
-        return f"Foydalanuvchi: {self.username}, ismi: {self.full_name}, email: {self.email}"
+    employee.reset_hours()
+    print(employee.total_hours())       
+    print(employee.calculate_salary())  
 
 
-    def change_email(self, new_email):
-        self.email = new_email
-        print("Email yangilandi!")
 
-    
-    def change_name(self, new_name):
-        self.full_name = new_name
-        print("Ism yangilandi!")
+#1 vazifa 
+class Student:
+    def __init__(self, name: str, student_id: str) -> None:
+        self.name = name
+        self.student_id = student_id
+        self.__grades = []
+
+    def add_grade(self, grade: int) -> None:
+        if 0 <= grade <= 100:
+            self.__grades.append(grade)
+        else:
+            print("Xato: Noto'g'ri baho")
+
+    def calculate_average(self) -> float:
+        if not self.__grades:
+            return 0.0
+        return sum(self.__grades) / len(self.__grades)
+
+    def get_status(self) -> str:
+        avg = self.calculate_average()
+        if 90 <= avg <= 100:
+            return "A'lo"
+        elif 80 <= avg <= 89:
+            return "Yaxshi"
+        elif 70 <= avg <= 79:
+            return "Qoniqarli"
+        else:
+            return "Qoniqarsiz"
 
 
-user1 = User("alijon1994", "Alijon Valiyev", "alijon1994@gmail.com")
-user2 = User("nodir_01", "Nodir Karimov", "nodir01@mail.com")
+# Test (namuna)
+if __name__ == "__main__":
+    student = Student("Nodira", "S123")
 
+    student.add_grade(85)
+    student.add_grade(90)
 
-print(user1.get_info())
-print(user2.get_info())
+    print(student.calculate_average())  
+    print(student.get_status())      
 
-
-user1.change_email("newalijon@gmail.com")
-user2.change_name("Nodirbek Karimov")
-
-
-print(user1.get_info())
-print(user2.get_info())
+    student.add_grade(150)       
 
 
 
 
+#3 vazifa 
+class Employee:
+    def __init__(self, name: str, employee_id: str, hourly_rate: float = 15.0) -> None:
+        self.name = name
+        self.employee_id = employee_id
+        self.hourly_rate = hourly_rate
+        self.__working_hours = []
+
+    def log_hours(self, hour: int) -> bool:
+        if 0 <= hour <= 24:
+            self.__working_hours.append(hour)
+            return True
+        return False
+
+    def total_hours(self) -> int:
+        return sum(self.__working_hours)
+
+    def calculate_salary(self) -> float:
+        return self.total_hours() * self.hourly_rate
+
+    def reset_hours(self) -> None:
+        self.__working_hours.clear()
 
 
+class Student:
+    def __init__(self, name: str, student_id: str) -> None:
+        self.name = name
+        self.student_id = student_id
+        self.__grades = []
+
+    def add_grade(self, grade: int) -> None:
+        if 0 <= grade <= 100:
+            self.__grades.append(grade)
+        else:
+            print("Xato: Noto'g'ri baho")
+
+    def calculate_average(self) -> float:
+        if not self.__grades:
+            return 0.0
+        return sum(self.__grades) / len(self.__grades)
+
+    def get_status(self) -> str:
+        avg = self.calculate_average()
+        if 90 <= avg <= 100:
+            return "A'lo"
+        elif 80 <= avg <= 89:
+            return "Yaxshi"
+        elif 70 <= avg <= 79:
+            return "Qoniqarli"
+        else:
+            return "Qoniqarsiz"
