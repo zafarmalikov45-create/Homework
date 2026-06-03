@@ -1,0 +1,59 @@
+import json
+
+f = open("exam.json", "r")
+data = json.load(f)
+f.close()
+
+books = data["books"]
+print("Barcha kitoblar:")
+for b in books:
+    print(b["title"])
+
+
+
+borrowed_books = [b for b in books if b["borrowed"]=="true"]
+print("Borrowed kitoblar:")
+for b in borrowed_books:
+    print(b["title"])
+
+
+
+
+
+old = min(books, key=lambda x: x["year"])
+print("Eng eskisi:", old["title"], old["year"])
+
+
+
+
+
+
+most_expensive = max(books, key=lambda x: x["price"])
+print("Eng qimmat:", most_expensive["title"], most_expensive["price"])
+
+
+arzoni = min(books, key=lambda x: x["price"])
+print("Eng arzon:", arzoni["title"], arzoni["price"])
+
+
+total_price = sum(b["price"] for b in books)
+print("Umumiy narx:", total_price)
+
+yil_2021 = [b for b in books if b["year"] > 2021]
+print("2021 dan keyingi:")
+for b in yil_2021:
+    print(b["title"])
+
+
+avg_price = total_price / len(books)
+print("O'rtacha narx:", avg_price)
+
+
+borrowed_count = sum(1 for b in books if b["borrowed"])
+print("Borrowed soni:", borrowed_count)
+
+
+
+
+
+
